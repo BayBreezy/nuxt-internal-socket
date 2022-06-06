@@ -1,7 +1,7 @@
 {
   "name": "nuxt-internal-socket",
   "description": "Nuxt module that hooks into the `listen` hook and creates a socket.io connection.",
-  "homepage": "",
+  "homepage": "https://github.com/BayBreezy/nuxt-internal-socket#readme",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
