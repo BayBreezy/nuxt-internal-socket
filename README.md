@@ -62,3 +62,20 @@ export default defineNuxtConfig({
   },
 });
 ```
+
+## What this module does?
+
+This module will hook into the `listen` hook and create a socket.io connection.
+
+You can access the socket client instance through the `useNuxtApp` composable withing your application.
+
+```ts
+// get socket from nuxt instance
+const { $io } = useNuxtApp();
+```
+
+The in a function you can use the socket client to emit events to the server.
+
+```js
+$io.emit("event", { data: "hello" });
+```
