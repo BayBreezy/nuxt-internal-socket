@@ -10,7 +10,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "nuxt-socket-10",
+    name: "nuxt-internal-socket",
     configKey: "socketIO",
   },
   defaults: {
