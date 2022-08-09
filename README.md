@@ -74,7 +74,7 @@ You can access the socket client instance through the `useNuxtApp` composable wi
 const { $io } = useNuxtApp();
 ```
 
-The in a function you can use the socket client to emit events to the server.
+Then in a function you can use the socket client to emit events to the server.
 
 ```js
 $io.emit("event", { data: "hello" });
