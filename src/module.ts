@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import { fileURLToPath } from "url";
 import { defineNuxtModule, addPluginTemplate, createResolver } from "@nuxt/kit";
 import { Server } from "socket.io";
