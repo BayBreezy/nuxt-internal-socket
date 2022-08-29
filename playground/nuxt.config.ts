@@ -6,6 +6,5 @@ export default defineNuxtConfig({
   modules: [socketModule],
   socketIO: {
     socketFunctions: functions,
-    socketFunctionPath: "sockets/index.ts",
   },
 });

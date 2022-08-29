@@ -1,11 +1,16 @@
 import { resolve } from "path";
 import { fileURLToPath } from "url";
-import { defineNuxtModule, addPlugin } from "@nuxt/kit";
+import { defineNuxtModule, addPluginTemplate, createResolver } from "@nuxt/kit";
 import { Server } from "socket.io";
+import { ManagerOptions } from "socket.io-client";
 import errorOut from "./runtime/errorOut";
 
 export interface ModuleOptions {
   socketFunctions: (io) => void;
+  clientOptions?: {
+    uri?: string;
+    managerOptions?: ManagerOptions | {};
+  };
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -14,9 +19,15 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: "socketIO",
   },
   defaults: {
-    socketFunctions: null,
+    socketFunctions: () => {},
+    clientOptions: {
+      uri: "/",
+      managerOptions: {},
+    },
   },
   async setup(options, nuxt) {
+    const resolver = createResolver(import.meta.url);
+
     // Shutdown nuxt server if the socket function is not defined
     if (!options.socketFunctions) {
       errorOut("Please provide the socket function");
@@ -34,9 +45,10 @@ export default defineNuxtModule<ModuleOptions>({
     const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url));
     nuxt.options.build.transpile.push(runtimeDir);
 
-    addPlugin({
-      src: resolve(runtimeDir, "plugin"),
+    addPluginTemplate({
+      src: resolver.resolve("runtime/plugin.mjs"),
       mode: "client",
+      options: options.clientOptions,
     });
   },
 });
