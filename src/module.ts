@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs'
+import { template } from 'lodash-es'
 import { fileURLToPath } from "url";
 import { defineNuxtModule, addPluginTemplate, createResolver } from "@nuxt/kit";
 import { Server } from "socket.io";
@@ -45,7 +47,10 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(runtimeDir);
 
     addPluginTemplate({
-      src: resolver.resolve("runtime/plugin.mjs"),
+      getContents({ options }) {
+        const contents = readFileSync(resolver.resolve("runtime/plugin.mjs"), "utf-8")
+        return template(contents)({ options })
+      },
       mode: "client",
       options: options.clientOptions,
     });
