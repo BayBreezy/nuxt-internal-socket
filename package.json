@@ -36,12 +36,14 @@
     "@nuxt/kit": "^3.0.0-rc.3",
     "boxen": "^6.2.1",
     "chalk": "^5.0.1",
+    "lodash-es": "^4.17.21",
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
+    "@types/lodash-es": "^4.17.12",
     "eslint": "latest",
     "nuxt": "^3.0.0-rc.3"
   }
